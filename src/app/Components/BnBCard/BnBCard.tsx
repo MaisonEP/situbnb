@@ -6,7 +6,10 @@ import React from "react";
 export function Card() {
 	return (
 		<div className="Ocean">
-			<div className="island"></div>
+			<AccomodationAvatar></AccomodationAvatar>
+			<AccomodationAvatar></AccomodationAvatar>
+			<AccomodationAvatar></AccomodationAvatar>
+			<AccomodationAvatar></AccomodationAvatar>
 		</div>
 	);
 }

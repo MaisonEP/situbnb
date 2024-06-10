@@ -1,0 +1,14 @@
+.Ocean {
+	height: calc(100vh - 100px);
+	width: 100vw;
+	background-color: rgb(234, 227, 227);
+	align-items: center;
+	justify-content: center;
+
+	grid-template-columns: 50% 1fr;
+	grid-auto-rows: max-content;
+	gap: 15px;
+	padding: 20px 120px;
+	display: grid;
+	overflow: auto;
+}
