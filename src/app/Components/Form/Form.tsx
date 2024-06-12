@@ -5,13 +5,17 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import DatePicker from "react-datepicker";
 import { useState } from "react";
+import dayjs from "dayjs";
 
 export function BnBForm() {
-	const [startDate, setStartDate] = useState(new Date());
-	const [endDate, setEndDate] = useState(new Date());
+	const [startDate, setStartDate] = useState("");
+	const [endDate, setEndDate] = useState("");
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [mobile, setMobile] = useState("");
+
+	const staybegin = dayjs(startDate);
+	const stayLength = staybegin.diff(endDate, "day");
 
 	function submit() {
 		return;
@@ -33,7 +37,11 @@ export function BnBForm() {
 						<DatePicker
 							selected={startDate}
 							onSelect={(d) => {
-								setStartDate(d);
+								const staybegin = dayjs(d).format("DD/MM/YYYY");
+								// const staybegin = d.toISOString();
+
+								setStartDate(staybegin);
+								console.log(d.toISOString());
 							}}
 							className="calander"
 						>
@@ -45,7 +53,11 @@ export function BnBForm() {
 						<DatePicker
 							selected={endDate}
 							onSelect={(d) => {
-								setEndDate(d);
+								const stayEnd = dayjs(d).format("DD/MM/YYYY");
+								// const stayEnd = new Date(d).toISOString();
+
+								setEndDate(stayEnd);
+								console.log(stayLength);
 							}}
 							className="calander"
 						>

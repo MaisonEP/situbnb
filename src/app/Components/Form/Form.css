@@ -21,6 +21,7 @@
 .formLabels {
 	color: black;
 	margin: 5px;
+	align-self: center;
 }
 
 .form {
