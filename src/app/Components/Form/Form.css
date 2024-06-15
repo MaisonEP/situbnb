@@ -44,3 +44,8 @@
 	min-height: 60%;
 	align-self: center;
 }
+
+.datePicker {
+	width: 40%;
+	padding: 1px;
+}

@@ -1,102 +1,69 @@
 "use client";
 
 import "./Form.css";
-import "react-datepicker/dist/react-datepicker.css";
 
-import DatePicker from "react-datepicker";
+import { FormControl, Input, Stack, Button, Box } from "@chakra-ui/react";
+
 import { useState } from "react";
-import dayjs from "dayjs";
+import {
+	DateRangeInput,
+	Datepicker,
+	OnDatesChangeProps,
+	START_DATE,
+	END_DATE,
+} from "@datepicker-react/styled";
 
 export function BnBForm() {
-	const [startDate, setStartDate] = useState("");
-	const [endDate, setEndDate] = useState("");
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [mobile, setMobile] = useState("");
 
-	const staybegin = dayjs(startDate);
-	const stayLength = staybegin.diff(endDate, "day");
+	const [calenderState, setCalenderState] = useState<OnDatesChangeProps>({
+		startDate: null,
+		endDate: null,
+		focusedInput: START_DATE,
+	});
 
-	function submit() {
-		return;
+	// const staybegin = dayjs(startDate);
+	// const stayLength = staybegin.diff(endDate, "day");
+
+	function handleDatesChange(data: OnDatesChangeProps) {
+		if (!data.focusedInput) {
+			setCalenderState({ ...data, focusedInput: START_DATE });
+		} else {
+			setCalenderState(data);
+		}
 	}
 
+	const date = new Date();
+	console.log(date);
 	return (
-		<div className="Ocean">
-			<div className="island">
-				<form
-					className="form"
-					onSubmit={(e) => {
-						e.preventDefault();
-						submit();
-						console.log(e);
-					}}
-				>
-					<label className="formLabels">
-						Start Date:
-						<DatePicker
-							selected={startDate}
-							onSelect={(d) => {
-								const staybegin = dayjs(d).format("DD/MM/YYYY");
-								// const staybegin = d.toISOString();
+		<FormControl isRequired>
+			<div className="Ocean">
+				<div className="island">
+					<Stack spacing={2} padding={5}>
+						<Box bg="#f2e2e1" borderRadius="lg" w="100%" p={4} color="white">
+							<Datepicker
+								startDate={calenderState.startDate}
+								endDate={calenderState.endDate}
+								focusedInput={calenderState.focusedInput}
+								onDatesChange={handleDatesChange}
+								displayFormat={"dd/MM/yyyy"}
+								minBookingDate={new Date()}
+							></Datepicker>
+						</Box>
+						<Input placeholder="Full Name" size="md" type="text" m={1} />
 
-								setStartDate(staybegin);
-								console.log(d.toISOString());
-							}}
-							className="calander"
-						>
-							Date
-						</DatePicker>
-					</label>
-					<label className="formLabels">
-						End Date:
-						<DatePicker
-							selected={endDate}
-							onSelect={(d) => {
-								const stayEnd = dayjs(d).format("DD/MM/YYYY");
-								// const stayEnd = new Date(d).toISOString();
+						<Input placeholder="Email" size="md" type="email" m={1} />
 
-								setEndDate(stayEnd);
-								console.log(stayLength);
-							}}
-							className="calander"
-						>
-							Date
-						</DatePicker>
-					</label>
-					<label className="formLabels">
-						Name:
-						<input
-							className="input"
-							onChange={(e) => {
-								setName(e.target.value);
-							}}
-						></input>
-					</label>
-					<label className="formLabels">
-						Email:
-						<input
-							className="input"
-							onChange={(e) => {
-								setEmail(e.target.value);
-							}}
-						></input>
-					</label>
-					<label className="formLabels">
-						Mobile:
-						<input
-							className="input"
-							onChange={(e) => {
-								setMobile(e.target.value);
-							}}
-						></input>
-					</label>
+						<Input placeholder="Mobile" size="md" type="number" m={1} />
 
-					<button className="submitButton" type="submit">
-						Submit
-					</button>
-				</form>
+						<Button colorScheme="teal" variant="solid" size="md" width="20">
+							Submit
+						</Button>
+					</Stack>
+				</div>
 			</div>
-		</div>
+		</FormControl>
 	);
 }
