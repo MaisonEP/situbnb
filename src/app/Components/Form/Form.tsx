@@ -10,11 +10,10 @@ import {
 	Box,
 	StepNumber,
 } from "@chakra-ui/react";
-import { addDays, formatDistance, formatDistanceStrict } from "date-fns";
+import { addDays, formatDistanceStrict } from "date-fns";
 
 import { useEffect, useState } from "react";
 import { DateRange, DayPicker } from "react-day-picker";
-import { distance } from "framer-motion";
 
 export function BnBForm() {
 	const [name, setName] = useState("");
@@ -43,7 +42,6 @@ export function BnBForm() {
 		const stay = distance();
 		setStayLength(stay);
 	}, [range]);
-	console.log(stayLength);
 
 	function submitBooking() {
 		if (
@@ -63,7 +61,7 @@ export function BnBForm() {
 			if (numberOfEnq === null) {
 				numberOfEnq = "0";
 			}
-			console.log(numberOfEnq);
+
 			const updatedNumOfEnq = Number(numberOfEnq) + 1;
 			localStorage.setItem("numberOfEnq", updatedNumOfEnq.toString());
 			localStorage.setItem(`enquiry-${updatedNumOfEnq}`, serialisedObj);
