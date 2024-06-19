@@ -1,1 +1,4 @@
-[{"Location": "France", "Images":[]},{"Location": "Devon", "Images":[]}]
+[
+	{ "Location": "France", "Images": ["/FrenchBnB.jpg"] },
+	{ "Location": "Devon", "Images": ["/BnB.jpg"] }
+]

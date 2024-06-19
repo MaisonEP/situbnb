@@ -56,6 +56,9 @@ export default function NavBar() {
 					<Box>
 						<Image boxSize={"100px"} src="/DoeLogo.png"></Image>
 					</Box>
+					<Link href="/">
+						<Button>Home</Button>
+					</Link>
 				</HStack>
 				<Flex alignItems={"center"}>
 					<Menu>
@@ -71,7 +74,7 @@ export default function NavBar() {
 							</Box>
 						</MenuButton>
 						<MenuList>
-							<Link as={NextLink} href="/Admin">
+							<Link href="/Admin">
 								<MenuItem>Admin</MenuItem>
 							</Link>
 						</MenuList>

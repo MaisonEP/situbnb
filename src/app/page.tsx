@@ -7,7 +7,7 @@ import { Card } from "./Components/BnBCard/BnBCard";
 export default function Home() {
 	return (
 		<ChakraProvider>
-			<NavBar></NavBar>
+			{/* <NavBar></NavBar> */}
 			<Card></Card>
 		</ChakraProvider>
 	);

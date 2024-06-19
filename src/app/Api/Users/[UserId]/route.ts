@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import Data from "../../../Data.json";
+import Data from "@/app/Data/EnquiriesData.json";
 
 export async function GET(request: Request, context: any) {
 	const { params } = context;

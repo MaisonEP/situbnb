@@ -23,7 +23,7 @@ export function BnBForm() {
 
 	const initialRange: DateRange = {
 		from: new Date(),
-		to: addDays(new Date(), 4),
+		to: addDays(new Date(), 1),
 	};
 
 	const [range, setRange] = useState<DateRange | undefined>(initialRange);
@@ -43,28 +43,39 @@ export function BnBForm() {
 		setStayLength(stay);
 	}, [range]);
 
-	function submitBooking() {
+	async function submitBooking() {
 		if (
 			stayLength !== undefined &&
 			name !== undefined &&
 			email !== undefined &&
 			mobile !== undefined
 		) {
-			const localStoreObj = {
-				stay: stayLength,
-				name: name,
-				email: email,
-				number: mobile,
+			const reqObj = {
+				Name: name,
+				Email: email,
+				Mobile: mobile,
+				StayLength: stayLength,
 			};
-			const serialisedObj = JSON.stringify(localStoreObj);
-			let numberOfEnq = localStorage.getItem("numberOfEnq");
-			if (numberOfEnq === null) {
-				numberOfEnq = "0";
-			}
+			const request = await fetch("/Api/SubmitForm", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(reqObj),
+			});
 
-			const updatedNumOfEnq = Number(numberOfEnq) + 1;
-			localStorage.setItem("numberOfEnq", updatedNumOfEnq.toString());
-			localStorage.setItem(`enquiry-${updatedNumOfEnq}`, serialisedObj);
+			// const localStoreObj = {
+			// 	stay: stayLength,
+			// 	name: name,
+			// 	email: email,
+			// 	number: mobile,
+			// };
+			// const serialisedObj = JSON.stringify(localStoreObj);
+			// let numberOfEnq = localStorage.getItem("numberOfEnq");
+			// if (numberOfEnq === null) {
+			// 	numberOfEnq = "0";
+			// }
+			// const updatedNumOfEnq = Number(numberOfEnq) + 1;
+			// localStorage.setItem("numberOfEnq", updatedNumOfEnq.toString());
+			// localStorage.setItem(`enquiry-${updatedNumOfEnq}`, serialisedObj);
 		}
 	}
 
