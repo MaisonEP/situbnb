@@ -9,17 +9,21 @@ import {
 	Button,
 	Box,
 	StepNumber,
+	Heading,
+	ButtonGroup,
 } from "@chakra-ui/react";
 import { addDays, formatDistanceStrict } from "date-fns";
 
 import { useEffect, useState } from "react";
 import { DateRange, DayPicker } from "react-day-picker";
+import Carousel from "../Carousel/Carousel";
 
 export function BnBForm() {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [mobile, setMobile] = useState("");
 	const [stayLength, setStayLength] = useState<string | undefined>();
+	const [buttonState, setButtonState] = useState(true);
 
 	const initialRange: DateRange = {
 		from: new Date(),
@@ -56,32 +60,22 @@ export function BnBForm() {
 				Mobile: mobile,
 				StayLength: stayLength,
 			};
-			const request = await fetch("/Api/SubmitForm", {
+			const postRequest = await fetch("/Api/SubmitForm", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(reqObj),
 			});
-
-			// const localStoreObj = {
-			// 	stay: stayLength,
-			// 	name: name,
-			// 	email: email,
-			// 	number: mobile,
-			// };
-			// const serialisedObj = JSON.stringify(localStoreObj);
-			// let numberOfEnq = localStorage.getItem("numberOfEnq");
-			// if (numberOfEnq === null) {
-			// 	numberOfEnq = "0";
-			// }
-			// const updatedNumOfEnq = Number(numberOfEnq) + 1;
-			// localStorage.setItem("numberOfEnq", updatedNumOfEnq.toString());
-			// localStorage.setItem(`enquiry-${updatedNumOfEnq}`, serialisedObj);
+			const result = await postRequest.json();
+			console.log(result);
 		}
 	}
 
 	return (
-		<FormControl isRequired>
-			<div className="Ocean">
+		<Box>
+			{/* <Carousel data={data}></Carousel> */}
+			<FormControl isRequired>
+				{/* <div className="Ocean"> */}
+				<Heading>Enquiries Form</Heading>
 				<div className="island">
 					<Stack className="stackContainer" spacing={2}>
 						<Box
@@ -106,7 +100,7 @@ export function BnBForm() {
 							/>
 						</Box>
 						<Box>
-							{stayLength !== undefined
+							{stayLength !== undefined && stayLength !== "0 days"
 								? `Your stay will be ${stayLength}!`
 								: "Please select stay duration"}
 						</Box>
@@ -145,23 +139,32 @@ export function BnBForm() {
 									setMobile(e.target.value);
 								}}
 							/>
+							<ButtonGroup isDisabled={buttonState}>
+								{/* {stayLength !== undefined &&
+								name !== undefined &&
+								email !== undefined &&
+								mobile !== undefined
+									? setButtonState(false)
+									: setButtonState(true)} */}
 
-							<Button
-								bg="rgb(135, 78, 50)"
-								color={"white"}
-								variant="solid"
-								size="md"
-								width="20"
-								_hover={{ bg: " rgba(135, 78, 50, 0.813)" }}
-								type="submit"
-								onClick={submitBooking}
-							>
-								Submit
-							</Button>
+								<Button
+									bg="rgb(135, 78, 50)"
+									color={"white"}
+									variant="solid"
+									size="md"
+									width="20"
+									_hover={{ bg: " rgba(135, 78, 50, 0.813)" }}
+									type="submit"
+									onClick={submitBooking}
+								>
+									Submit
+								</Button>
+							</ButtonGroup>
 						</Box>
 					</Stack>
 				</div>
-			</div>
-		</FormControl>
+				{/* </div> */}
+			</FormControl>
+		</Box>
 	);
 }

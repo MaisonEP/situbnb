@@ -5,7 +5,7 @@ import "./AccomodationAvatar.css";
 import { Link } from "@chakra-ui/react";
 import { BnbDataResponse } from "@/app/Api/BnB/route";
 
-interface AccomodationAvatarProps {
+export interface AccomodationAvatarProps {
 	bnbData: BnbDataResponse;
 }
 
