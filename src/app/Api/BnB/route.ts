@@ -1,4 +1,4 @@
-import BnBData from "../../BnBData.json";
+import BnBData from "../../Data/BnBData.json";
 import { NextResponse } from "next/server";
 
 export interface BnbDataResponse {

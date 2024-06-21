@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { UserResponse } from "../Users/route";
 
 import fs from "fs";
 import path from "path";
