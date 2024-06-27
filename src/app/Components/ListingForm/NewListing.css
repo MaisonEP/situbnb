@@ -1,0 +1,21 @@
+.listCardContainer {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	width: 100vw;
+}
+
+.listingCard {
+	width: auto;
+	max-height: auto;
+	width: 70%;
+}
+
+.cardBody {
+	height: 30%;
+}
+
+.imagePickerBox {
+	min-height: 40%;
+	align-content: center;
+}

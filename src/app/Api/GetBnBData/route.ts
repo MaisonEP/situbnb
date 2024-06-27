@@ -4,6 +4,8 @@ import { NextResponse } from "next/server";
 export interface BnbDataResponse {
 	Location: string;
 	Images: string[];
+	Price: string;
+	Beds: string;
 }
 
 export async function GET(): Promise<NextResponse<BnbDataResponse[]>> {

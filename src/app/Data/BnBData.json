@@ -1,4 +1,16 @@
 [
-	{ "Location": "France", "Images": ["/FrenchBnB.jpg","/livingroom.png"] },
-	{ "Location": "Devon", "Images": ["/BnB.jpg","/BnB.jpg"]  }
+	{
+		"Location": "France",
+		"Images": ["/FrenchBnB.jpg", "/livingroom.png"],
+		"Price": "",
+		"Beds": "",
+		"MoreInfo": ""
+	},
+	{
+		"Location": "Devon",
+		"Images": ["/BnB.jpg", "/BnB.jpg"],
+		"Price": "",
+		"Beds": "",
+		"MoreInfo": ""
+	}
 ]

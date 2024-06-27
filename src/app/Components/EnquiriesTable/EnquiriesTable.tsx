@@ -1,8 +1,10 @@
 import { UserResponse } from "@/app/Api/Users/route";
 import {
 	Box,
+	Button,
 	Heading,
 	Input,
+	Link,
 	Table,
 	TableCaption,
 	TableContainer,
@@ -13,7 +15,7 @@ import {
 	Thead,
 	Tr,
 } from "@chakra-ui/react";
-import { px } from "framer-motion";
+
 import { useEffect, useState } from "react";
 
 export function EnquiriesTable() {
@@ -63,7 +65,7 @@ export function EnquiriesTable() {
 				}}
 			/>
 			<TableContainer
-				m={"60px"}
+				m={"30px"}
 				className="Hi"
 				border={"solid"}
 				borderWidth={0.1}
@@ -102,6 +104,11 @@ export function EnquiriesTable() {
 					</Tbody>
 				</Table>
 			</TableContainer>
+			<Link href="/Admin/NewListing">
+				<Button marginBottom={"10px"} backgroundColor={"green"}>
+					Create Listing
+				</Button>
+			</Link>
 		</Box>
 	);
 }

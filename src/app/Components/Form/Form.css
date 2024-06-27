@@ -1,17 +1,13 @@
-.Ocean {
-	height: 100vh;
-	width: 100vw;
-	background-color: rgb(234, 227, 227);
+.formpage {
 	display: flex;
-	align-items: center;
-	justify-content: center;
 	flex-direction: column;
-}
 
+	align-items: center;
+}
 .island {
 	width: 40%;
 	background-color: white;
-	box-shadow: 0.1px 1px 3px black;
+	box-shadow: 0.1px 1px 3px rgb(93, 84, 84);
 	border-radius: 30px;
 	margin-bottom: 20px;
 	padding: 10px;
@@ -53,4 +49,7 @@
 
 .submitButton:hover {
 	background-color: rgba(135, 78, 50, 0.813);
+}
+
+.bookingInfo {
 }
