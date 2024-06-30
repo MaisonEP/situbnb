@@ -11,20 +11,30 @@ import {
 	Heading,
 	ButtonGroup,
 } from "@chakra-ui/react";
-import { addDays, formatDistanceStrict, set } from "date-fns";
-
+import {
+	addDays,
+	formatDistanceStrict,
+	intervalToDuration,
+	set,
+} from "date-fns";
+import { useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { DateRange, DayPicker } from "react-day-picker";
 import Carousel from "../Carousel/Carousel";
+import { parse } from "path";
+import { BnbDataResponse } from "@/app/Api/GetBnBData/route";
+import { title } from "process";
 
 export function BnBForm() {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [mobile, setMobile] = useState("");
 	const [stayLength, setStayLength] = useState<string | undefined>();
-	const [buttonState, setButtonState] = useState<Boolean | undefined>(true);
+	const [buttonState, setButtonState] = useState<boolean | undefined>(true);
 	const [images, setImages] = useState<string[]>([]);
+	const [data, setData] = useState<BnbDataResponse>();
 
+	const submitToast = useToast();
 	const initialRange: DateRange = {
 		from: set(new Date(), { hours: 0, minutes: 0, seconds: 0 }),
 		to: addDays(set(new Date(), { hours: 0, minutes: 0, seconds: 0 }), 0),
@@ -44,6 +54,7 @@ export function BnBForm() {
 				return rangeDistance;
 			}
 		}
+
 		const stay = distance();
 		setStayLength(stay);
 
@@ -54,19 +65,25 @@ export function BnBForm() {
 			});
 
 			const result = await response.json();
-			console.log(result);
+			setData(result[0]);
 			setImages(result[0].Images);
 		}
 		bnbImages();
-		stayLength !== undefined &&
-		name !== undefined &&
-		email !== undefined &&
-		mobile !== undefined &&
-		stayLength !== undefined
-			? setButtonState(false)
-			: setButtonState(true);
-		console.log(range);
 	}, [range]);
+
+	useEffect(() => {
+		if (
+			Boolean(stayLength) &&
+			Boolean(name) &&
+			Boolean(email) &&
+			Boolean(mobile) &&
+			Boolean(range)
+		) {
+			setButtonState(false);
+		} else {
+			setButtonState(true);
+		}
+	}, [stayLength, name, email, mobile]);
 	// function checkIn() {
 	// 	let checkinDate = "";
 	// 	const checkIn = [
@@ -80,6 +97,7 @@ export function BnBForm() {
 	// 	return checkinDate;
 	// }
 	// console.log(range);
+	console.log(buttonState);
 
 	async function submitBooking() {
 		if (
@@ -93,14 +111,27 @@ export function BnBForm() {
 				Email: email,
 				Mobile: mobile,
 				StayLength: stayLength,
+				stayCost: calculateStay().toString(),
 			};
-			const postRequest = await fetch("/Api/SubmitForm", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(reqObj),
-			});
+			try {
+				const postRequest = await fetch("/Api/SubmitForm", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(reqObj),
+				});
+				const response = await postRequest.json();
+				console.log(postRequest);
+			} catch (error) {
+				console.log(error);
+			}
 		}
 	}
+
+	const calculateStay = () => {
+		let cost = parseInt(data?.Price || "0") * parseInt(stayLength || "0");
+
+		return cost;
+	};
 
 	return (
 		<Box>
@@ -137,6 +168,13 @@ export function BnBForm() {
 								{stayLength !== undefined && stayLength !== "0 days"
 									? `Your stay will be ${stayLength}!`
 									: "Please select stay duration"}
+							</Box>
+							<Box>
+								{`£${data?.Price} per night`}
+								<Box>
+									{`Cost of your stay: £${stayLength ? calculateStay() : ""}
+									`}
+								</Box>
 							</Box>
 							<Box>{`Check-in: ${
 								range !== undefined ? range?.from?.getDate() : ""
@@ -194,7 +232,15 @@ export function BnBForm() {
 									width="20"
 									_hover={{ bg: " rgba(135, 78, 50, 0.813)" }}
 									type="submit"
-									onClick={submitBooking}
+									onClick={() => {
+										submitBooking(),
+											submitToast({
+												title: "Enquiry Submitted",
+												description: "Your enquiry was submitted",
+												duration: 5000,
+												isClosable: true,
+											});
+									}}
 								>
 									Submit
 								</Button>

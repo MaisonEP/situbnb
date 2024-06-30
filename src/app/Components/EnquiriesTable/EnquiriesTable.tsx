@@ -97,7 +97,7 @@ export function EnquiriesTable() {
 									<Td>{e.Email}</Td>
 									<Td>{e.Mobile}</Td>
 									<Td>{e.StayLength}</Td>
-									<Td>{"£" + e.Revenue}</Td>
+									<Td>{"£" + e.stayCost}</Td>
 								</tr>
 							);
 						})}

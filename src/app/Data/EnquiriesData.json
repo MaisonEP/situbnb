@@ -3,50 +3,21 @@
 		"Name": "Erlston Maison",
 		"Email": "erl.maison@hotmail.co.uk",
 		"Mobile": "07902761200",
-		"StayLength": "1 day"
+		"StayLength": "8 days",
+		"stayCost": "400"
 	},
 	{
-		"Name": "Erlston Maison",
-		"Email": "erl.maison@hotmail.co.uk",
-		"Mobile": "07902761200",
-		"StayLength": "1 day"
+		"Name": "James Bond",
+		"Email": "james.bond@hotmail.co.uk",
+		"Mobile": "07904623100",
+		"StayLength": "0 days",
+		"stayCost": "0"
 	},
 	{
-		"Name": "sdfhsadfihsadfhasdhoashio",
-		"Email": "dfhsdhison@hdfhgs",
-		"Mobile": "0790276120056456",
-		"StayLength": "1 day"
-	},
-	{
-		"Name": "Jdfhfo",
-		"Email": "jo.dev@email.uk",
-		"Mobile": "07904520400",
-		"StayLength": "7"
-	},
-	{
-		"Name": "Erl",
-		"Email": "erl.maison@hotmail.co.uk",
-		"Mobile": "07902761200",
-		"StayLength": "9 days"
-	},
-	{ "Name": "", "Email": "", "Mobile": "", "StayLength": "1 day" },
-	{
-		"Name": "Erlston Maison",
-		"Email": "erl.maison@hotmail.co.uk",
-		"Mobile": "07902761200",
-		"StayLength": "1 day"
-	},
-	{
-		"Name": "Erlston Maison",
-		"Email": "erl.maison@hotmail.co.uk",
-		"Mobile": "07902761200",
-		"StayLength": "1 day"
-	},
-	{
-		"Name": "joseph",
-		"Email": "Joseph@hotmail.co.uk",
-		"Mobile": "03434",
-		"StayLength": "1 day"
-	},
-	{ "Name": "", "Email": "", "Mobile": "", "StayLength": "1 day" }
+		"Name": "James Bond",
+		"Email": "james.bond@hotmail.co.uk",
+		"Mobile": "07904623100",
+		"StayLength": "5 days",
+		"stayCost": "170"
+	}
 ]

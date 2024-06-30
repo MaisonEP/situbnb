@@ -1,6 +1,5 @@
 "use client";
 
-import { Avatar, AvatarGroup, Box } from "@chakra-ui/react";
 import "./AccomodationAvatar.css";
 import { Link } from "@chakra-ui/react";
 import { BnbDataResponse } from "@/app/Api/GetBnBData/route";

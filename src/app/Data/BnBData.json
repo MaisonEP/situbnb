@@ -2,15 +2,22 @@
 	{
 		"Location": "France",
 		"Images": ["/FrenchBnB.jpg", "/livingroom.png"],
-		"Price": "",
-		"Beds": "",
+		"Price": "50",
+		"Beds": "3",
 		"MoreInfo": ""
 	},
 	{
 		"Location": "Devon",
 		"Images": ["/BnB.jpg", "/BnB.jpg"],
-		"Price": "",
-		"Beds": "",
+		"Price": "34",
+		"Beds": "2",
 		"MoreInfo": ""
+	},
+	{
+		"Location": "cardiff",
+		"Price": "200",
+		"Beds": "3",
+		"MoreInfo": "",
+		"Images": []
 	}
 ]

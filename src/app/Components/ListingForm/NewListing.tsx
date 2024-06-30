@@ -118,7 +118,15 @@ export default function ListingForm() {
 
 				<CardFooter>
 					<ButtonGroup spacing="2">
-						<Button variant="solid" colorScheme="green" onClick={HandleSubmit}>
+						<Button
+							variant="solid"
+							colorScheme="green"
+							onClick={() => {
+								HandleSubmit;
+
+								window.location.reload();
+							}}
+						>
 							List property
 						</Button>
 					</ButtonGroup>
